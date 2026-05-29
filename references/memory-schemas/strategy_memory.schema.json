@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Strategy Memory",
+  "type": "object",
+  "required": [
+    "version",
+    "posture",
+    "strategy_matrix"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "strategy_status": {
+      "enum": [
+        "complete",
+        "partial",
+        "blocked"
+      ]
+    },
+    "strategy_principle": {
+      "type": "string"
+    },
+    "analysis_status": {
+      "enum": [
+        "complete",
+        "partial",
+        "blocked"
+      ]
+    },
+    "posture": {
+      "enum": [
+        "high_risk_reject",
+        "borderline",
+        "rebuttal_sensitive",
+        "weak_accept_unstable",
+        "split_review",
+        "likely_accept_needs_stabilization",
+        "unknown"
+      ]
+    },
+    "posture_confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low",
+        "unknown"
+      ]
+    },
+    "posture_evidence": {
+      "type": "array"
+    },
+    "score_confidence_summary": {
+      "type": "object"
+    },
+    "reviewer_stance_map": {
+      "type": "array"
+    },
+    "priority_ranked_concerns": {
+      "type": "array"
+    },
+    "core_common_concern_priority": {
+      "type": "array"
+    },
+    "reviewer_priority_map": {
+      "type": "array"
+    },
+    "evidence_gap_urgency": {
+      "type": "array"
+    },
+    "analyzed_concern_cards": {
+      "type": "array"
+    },
+    "core_common_concern_analysis": {
+      "type": "array"
+    },
+    "ac_decision_facts": {
+      "type": "array"
+    },
+    "evidence_gap_ledger": {
+      "type": "array"
+    },
+    "coverage_audit": {
+      "type": "object"
+    },
+    "goals": {
+      "type": "array"
+    },
+    "reviewer_goal_model": {
+      "type": "object"
+    },
+    "top_focused_problems": {
+      "type": "array"
+    },
+    "global_response_themes": {
+      "type": "array"
+    },
+    "per_reviewer_strategy": {
+      "type": "array"
+    },
+    "experiment_handoffs": {
+      "type": "array",
+      "description": "Legacy field from the old strategy-to-experiment order; prefer experiment_dependencies and experiment_strategy_mapping with EXP-* IDs."
+    },
+    "paper_edit_handoffs": {
+      "type": "array"
+    },
+    "coverage_plan": {
+      "type": "object"
+    },
+    "tone_plan": {
+      "type": "object"
+    },
+    "strategy_matrix": {
+      "type": "array"
+    },
+    "experiment_triage": {
+      "type": "array",
+      "description": "Legacy inline triage; prefer experiment_memory.json for numbered EXP-* candidates."
+    },
+    "response_blueprint": {
+      "type": "object"
+    },
+    "ac_summary_decision": {
+      "type": "object",
+      "description": "Strategy-level recommendation; detailed AC summary state lives in ac_summary_memory.json."
+    },
+    "next_routes": {
+      "type": "array"
+    },
+    "open_questions": {
+      "type": "array"
+    },
+    "experiment_priority_links": {
+      "type": "array"
+    },
+    "experiment_strategy_mapping": {
+      "type": "array"
+    },
+    "experiment_dependencies": {
+      "type": "array"
+    },
+    "user_strategy_decision": {
+      "type": "object"
+    },
+    "strategy_questionnaire": {
+      "type": "object"
+    }
+  }
+}

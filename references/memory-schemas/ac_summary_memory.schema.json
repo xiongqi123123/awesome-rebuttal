@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal AC Summary Memory",
+  "type": "object",
+  "required": [
+    "version",
+    "status",
+    "decision",
+    "ac_fact_ledger",
+    "coverage_and_risk_check"
+  ],
+  "properties": {
+    "version": {"type": "string"},
+    "status": {"enum": ["ready", "partial", "blocked", "not_recommended"]},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "decision": {
+      "type": "object",
+      "required": ["decision", "reason", "venue_rule_status"],
+      "properties": {
+        "decision": {"enum": ["yes", "no", "blocked"]},
+        "reason": {"enum": ["split_review", "low_score_context", "scattered_decision_facts", "not_allowed", "not_useful", "insufficient_evidence", "space_cost_too_high", "unknown"]},
+        "venue_rule_status": {"enum": ["confirmed_allowed", "confirmed_disallowed", "needs_confirmation", "unknown"]},
+        "recommended_placement": {"enum": ["opening_global_paragraph", "closing_global_paragraph", "separate_ac_summary", "hybrid_global_intro", "do_not_include", "unknown"]},
+        "target_length": {"enum": ["one_sentence", "one_short_paragraph", "two_short_paragraphs", "bullets", "unknown"]},
+        "space_budget": {"type": "object"},
+        "risk_level": {"enum": ["low", "medium", "high", "unknown"]},
+        "required_user_confirmation": {"type": "boolean"}
+      }
+    },
+    "source_strategy_memory": {"type": "string"},
+    "source_response_memory": {"type": "string"},
+    "source_experiment_memory": {"type": "string"},
+    "source_review_memory": {"type": "string"},
+    "source_review_analysis_memory": {"type": "string"},
+    "source_paper_memory": {"type": "string"},
+    "source_code_memory": {"type": "string"},
+    "ac_fact_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["fact_id", "fact_type", "summary", "source", "support_status", "allowed_in_ac_summary"],
+        "properties": {
+          "fact_id": {"type": "string"},
+          "fact_type": {"enum": ["shared_strength", "common_concern", "low_score_rationale", "new_evidence", "diagnosis", "scope_revision", "experiment_result", "paper_claim", "venue_rule", "other"]},
+          "summary": {"type": "string"},
+          "source": {"enum": ["review", "paper", "code", "experiment", "strategy", "response", "user", "venue_rule", "unknown"]},
+          "source_anchor": {"type": "string"},
+          "reviewer_sources": {"type": "array"},
+          "support_status": {"enum": ["verified", "needs_user_confirmation", "blocked"]},
+          "allowed_in_ac_summary": {"type": "boolean"}
+        }
+      }
+    },
+    "low_score_context": {"type": "array"},
+    "shared_positive_assessment": {"type": "array"},
+    "decision_critical_concerns": {"type": "array"},
+    "evidence_to_highlight": {"type": "array"},
+    "draft_variants": {"type": "array"},
+    "selected_draft": {"type": "object"},
+    "coverage_and_risk_check": {
+      "type": "object",
+      "properties": {
+        "no_reviewer_attack": {"enum": ["pass", "blocked", "needs_review", "unknown"]},
+        "no_reviewer_ranking": {"enum": ["pass", "blocked", "needs_review", "unknown"]},
+        "facts_verified": {"enum": ["pass", "blocked", "needs_user_confirmation", "unknown"]},
+        "rule_compliant": {"enum": ["pass", "blocked", "needs_user_confirmation", "unknown"]},
+        "space_tradeoff_ok": {"enum": ["pass", "blocked", "needs_user_confirmation", "unknown"]},
+        "tone": {"enum": ["pass", "blocked", "needs_review", "unknown"]}
+      }
+    },
+    "user_confirmation": {"type": "object"},
+    "open_questions": {"type": "array"}
+  }
+}

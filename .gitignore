@@ -1,0 +1,25 @@
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Python/cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Runtime workspaces and scratch data
+.awesome-rebuttal/
+Temp/
+*.tmp
+
+# Local OMX/dev planning state
+.omx/
+
+# Private rebuttal test workspace; never commit papers/reviews/artifacts
+/Test/
+/Test\ /
+
+# Imported source copy; canonical built-in asset lives under assets/
+OnePage_Rebuttal_Template/

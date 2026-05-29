@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Review Analysis Memory",
+  "type": "object",
+  "required": ["version", "status", "source_review_memory", "semantic_concern_cards", "semantic_common_clusters"],
+  "properties": {
+    "version": {"type": "string"},
+    "status": {"enum": ["complete", "partial", "blocked"]},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "source_review_memory": {"type": "string"},
+    "reviewer_semantic_summaries": {"type": "array"},
+    "semantic_concern_cards": {"type": "array"},
+    "semantic_common_clusters": {"type": "array"},
+    "evidence_availability": {"type": "object"},
+    "coverage_audit": {"type": "object"},
+    "open_questions": {"type": "array"}
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Overleaf Sync Memory",
+  "type": "object",
+  "required": [
+    "version",
+    "status",
+    "method",
+    "target_dir",
+    "user_authorization"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "not_needed",
+        "offered",
+        "accepted",
+        "declined",
+        "completed",
+        "blocked"
+      ]
+    },
+    "source_type": {
+      "enum": [
+        "overleaf",
+        "cn_overleaf",
+        "manual_zip",
+        "local",
+        "unknown"
+      ]
+    },
+    "method": {
+      "enum": [
+        "manual_zip_or_pdf",
+        "leaflink_sync",
+        "git_overleaf_remote",
+        "pasted_summary_only",
+        "none",
+        "unknown"
+      ]
+    },
+    "target_dir": {
+      "type": "string"
+    },
+    "user_authorization": {
+      "enum": [
+        "granted",
+        "declined",
+        "needed",
+        "not_needed"
+      ]
+    },
+    "commands_suggested": {
+      "type": "array"
+    },
+    "commands_run": {
+      "type": "array"
+    },
+    "files_detected_after_sync": {
+      "type": "array"
+    },
+    "next_route": {
+      "type": "string"
+    },
+    "submission_facing_text_contamination_check": {
+      "enum": [
+        "pass",
+        "blocked",
+        "not_checked"
+      ]
+    },
+    "open_questions": {
+      "type": "array"
+    },
+    "tool": {
+      "type": "string"
+    },
+    "tool_homepage": {
+      "type": "string"
+    },
+    "base_url": {
+      "type": "string"
+    },
+    "project_ref_type": {
+      "enum": [
+        "url",
+        "project_id",
+        "exact_name",
+        "unknown"
+      ]
+    },
+    "project_ref_redacted": {
+      "type": "string"
+    },
+    "local_project_dir": {
+      "type": "string"
+    },
+    "install_status": {
+      "enum": [
+        "available",
+        "missing",
+        "installed",
+        "blocked",
+        "unknown"
+      ]
+    },
+    "auth_status": {
+      "enum": [
+        "not_needed",
+        "needed",
+        "logged_in",
+        "blocked",
+        "unknown"
+      ]
+    },
+    "allowed_operations": {
+      "type": "array"
+    },
+    "last_status_summary": {
+      "type": "object"
+    },
+    "latest_pdf_path": {
+      "type": "string"
+    },
+    "environment_manager": {
+      "enum": [
+        "conda",
+        "pip",
+        "system",
+        "unknown"
+      ]
+    },
+    "environment_name": {
+      "type": "string"
+    }
+  }
+}

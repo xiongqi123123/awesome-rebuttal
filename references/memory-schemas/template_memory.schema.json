@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Rebuttal Template Memory",
+  "type": "object",
+  "required": [
+    "version",
+    "status",
+    "response_mode",
+    "source",
+    "workspace_template_dir"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "missing",
+        "user_provided",
+        "ai_found_pending_confirmation",
+        "confirmed",
+        "fallback_builtin",
+        "generated_markdown",
+        "not_applicable"
+      ]
+    },
+    "response_mode": {
+      "enum": [
+        "openreview_per_reviewer",
+        "unified_limited",
+        "pdf_one_page",
+        "global_comment",
+        "hybrid",
+        "openreview_markdown_latex",
+        "unknown"
+      ]
+    },
+    "source": {
+      "enum": [
+        "user",
+        "official_search",
+        "builtin",
+        "generated",
+        "none"
+      ]
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "workspace_template_dir": {
+      "type": "string"
+    },
+    "built_in_asset": {
+      "type": "string"
+    },
+    "requires_latex": {
+      "type": "boolean"
+    },
+    "confirmed_by_user": {
+      "type": "boolean"
+    },
+    "compile_status": {
+      "enum": [
+        "not_attempted",
+        "passed",
+        "failed",
+        "blocked_missing_latex",
+        "not_applicable",
+        "needs_platform_preview"
+      ]
+    },
+    "notes": {
+      "type": "array"
+    },
+    "layout_family": {
+      "enum": [
+        "pdf_one_page",
+        "unified_limited",
+        "openreview_per_reviewer",
+        "openreview_global",
+        "openreview_markdown_latex",
+        "hybrid",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "draft_output_dir": {
+      "type": "string"
+    },
+    "generated_files": {
+      "type": "array"
+    },
+    "paste_targets": {
+      "type": "array"
+    },
+    "length_budget": {
+      "type": "object"
+    },
+    "compile_or_render_status": {
+      "enum": [
+        "not_applicable",
+        "not_attempted",
+        "passed",
+        "failed",
+        "blocked_missing_latex",
+        "needs_platform_preview"
+      ]
+    },
+    "consistency_checks": {
+      "type": "object"
+    }
+  }
+}

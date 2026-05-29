@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Snapshot Memory",
+  "type": "object",
+  "required": [
+    "version",
+    "updated_at",
+    "snapshot_order",
+    "latest_snapshot_id",
+    "latest_snapshot",
+    "snapshot_history",
+    "md_export"
+  ],
+  "properties": {
+    "version": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "timezone": {"type": "string"},
+    "snapshot_order": {"const": "newest_first"},
+    "latest_snapshot_id": {"type": "string"},
+    "latest_snapshot": {
+      "type": "object",
+      "required": [
+        "snapshot_id",
+        "created_at",
+        "stage",
+        "stage_label",
+        "status_line",
+        "workspace_digest",
+        "source_freshness",
+        "memory_status",
+        "safety_status",
+        "unresolved_todos",
+        "next_actions",
+        "reload_instructions"
+      ],
+      "properties": {
+        "snapshot_id": {"type": "string"},
+        "created_at": {"type": "string"},
+        "stage": {
+          "enum": [
+            "workspace",
+            "intake",
+            "paper_code",
+            "review_index",
+            "review_analysis",
+            "priority",
+            "strategy",
+            "experiment",
+            "draft",
+            "safety",
+            "final"
+          ]
+        },
+        "stage_label": {"type": "string"},
+        "status_line": {"type": "string"},
+        "workspace_digest": {"type": "object"},
+        "source_freshness": {"type": "array"},
+        "memory_status": {"type": "object"},
+        "venue_and_format": {"type": "object"},
+        "paper_code_digest": {"type": "object"},
+        "review_digest": {"type": "object"},
+        "situation_digest": {"type": "object"},
+        "strategy_digest": {"type": "object"},
+        "experiment_digest": {"type": "object"},
+        "drafting_digest": {"type": "object"},
+        "safety_status": {
+          "type": "object",
+          "properties": {
+            "overall": {"enum": ["pass", "blocked", "needs_user_confirmation", "unknown"]},
+            "provenance": {"enum": ["pass", "blocked", "needs_user_confirmation", "unknown"]},
+            "commitment": {"enum": ["pass", "blocked", "needs_user_confirmation", "unknown"]},
+            "coverage": {"enum": ["pass", "blocked", "needs_user_confirmation", "unknown"]},
+            "venue_rule": {"enum": ["pass", "blocked", "needs_user_confirmation", "unknown"]},
+            "tone": {"enum": ["pass", "blocked", "needs_user_confirmation", "unknown"]},
+            "anonymity": {"enum": ["pass", "blocked", "needs_user_confirmation", "unknown"]},
+            "fabrication": {"enum": ["pass", "blocked", "needs_user_confirmation", "unknown"]}
+          }
+        },
+        "open_questions": {"type": "array"},
+        "unresolved_todos": {"type": "array"},
+        "next_actions": {"type": "array"},
+        "changed_since_previous": {"type": "array"},
+        "reload_instructions": {"type": "array"}
+      }
+    },
+    "snapshot_history": {
+      "type": "array",
+      "description": "Compact history entries sorted newest-first.",
+      "items": {
+        "type": "object",
+        "required": ["snapshot_id", "created_at", "stage", "status_line"],
+        "properties": {
+          "snapshot_id": {"type": "string"},
+          "created_at": {"type": "string"},
+          "stage": {"type": "string"},
+          "status_line": {"type": "string"},
+          "key_changes": {"type": "array"},
+          "next_action": {"type": "string"},
+          "archive_file": {"type": "string"}
+        }
+      }
+    },
+    "archive_files": {"type": "array"},
+    "md_export": {
+      "type": "object",
+      "required": ["path", "generated_from"],
+      "properties": {
+        "path": {"type": "string"},
+        "generated_from": {"type": "string"},
+        "last_rendered_at": {"type": "string"},
+        "renderer": {"type": "string"}
+      }
+    },
+    "consistency_notes": {"type": "array"}
+  }
+}

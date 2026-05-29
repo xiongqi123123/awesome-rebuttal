@@ -1,0 +1,3 @@
+display_name: Awesome Rebuttal
+short_description: Global-installable project rebuttal strategy, memory, templates, snapshots, and drafting.
+default_prompt: Use awesome-rebuttal to create a workspace-local .awesome-rebuttal state folder, collect paper/code/review context, handle rebuttal templates/LaTeX, analyze reviewer concerns, plan experiments, and draft safe author responses under confirmed venue rules.

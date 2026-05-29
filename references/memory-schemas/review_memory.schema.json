@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Review Index Memory",
+  "type": "object",
+  "required": ["version", "status", "review_packet", "reviewers", "issue_item_index", "common_issue_index"],
+  "properties": {
+    "version": {"type": "string"},
+    "status": {"enum": ["complete", "partial", "blocked"]},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "review_packet": {"type": "object"},
+    "reviewers": {"type": "array"},
+    "section_index": {"type": "array"},
+    "raw_anchor_map": {"type": "array"},
+    "issue_item_index": {"type": "array"},
+    "common_issue_index": {"type": "array"},
+    "metadata_summary": {"type": "object"},
+    "parser_notes": {"type": "array"},
+    "open_questions": {"type": "array"}
+  }
+}

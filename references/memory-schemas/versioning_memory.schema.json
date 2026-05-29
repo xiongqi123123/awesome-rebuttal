@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Versioning Memory",
+  "type": "object",
+  "required": ["version", "mode", "snapshots", "checkpoint_history"],
+  "properties": {
+    "version": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "mode": {"enum": ["manual_git", "auto_git", "markdown_snapshot_only", "unset"]},
+    "git": {
+      "type": "object",
+      "properties": {
+        "repo_detected": {"type": "boolean"},
+        "branch": {"type": "string"},
+        "head": {"type": ["string", "null"]},
+        "dirty": {"type": "boolean"},
+        "ignored_private_paths": {"type": "array"},
+        "last_skill_commit": {"type": ["string", "null"]}
+      }
+    },
+    "snapshots": {
+      "type": "object",
+      "properties": {
+        "latest_snapshot_id": {"type": ["string", "null"]},
+        "snapshot_doc": {"type": "string"}
+      }
+    },
+    "checkpoint_history": {"type": "array"},
+    "recommended_commit_message": {"type": "string"},
+    "blocked_actions": {"type": "array"},
+    "next_checkpoint": {"type": "string"}
+  }
+}

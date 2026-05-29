@@ -1,0 +1,273 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Response Memory",
+  "type": "object",
+  "required": [
+    "version",
+    "draft_status",
+    "response_mode",
+    "source_strategy_memory",
+    "response_units",
+    "coverage_map",
+    "safety_precheck"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "draft_status": {
+      "enum": [
+        "ready",
+        "partial",
+        "blocked"
+      ]
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "response_mode": {
+      "enum": [
+        "openreview_per_reviewer",
+        "unified_limited",
+        "pdf_one_page",
+        "global_comment",
+        "hybrid",
+        "openreview_markdown_latex",
+        "unknown"
+      ]
+    },
+    "source_strategy_memory": {
+      "type": "string"
+    },
+    "source_experiment_memory": {
+      "type": "string"
+    },
+    "source_review_memory": {
+      "type": "string"
+    },
+    "source_review_analysis_memory": {
+      "type": "string"
+    },
+    "source_paper_memory": {
+      "type": "string"
+    },
+    "source_code_memory": {
+      "type": "string"
+    },
+    "venue_limits": {
+      "type": "object"
+    },
+    "style_profile": {
+      "type": "object"
+    },
+    "response_units": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "response_unit_id",
+          "mode",
+          "linked_concern_ids",
+          "strategy_stance",
+          "draft_status"
+        ],
+        "properties": {
+          "response_unit_id": {
+            "type": "string"
+          },
+          "mode": {
+            "type": "string"
+          },
+          "heading": {
+            "type": "string"
+          },
+          "linked_focused_problem_ids": {
+            "type": "array"
+          },
+          "linked_concern_ids": {
+            "type": "array"
+          },
+          "reviewer_sources": {
+            "type": "array"
+          },
+          "strategy_stance": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array"
+          },
+          "experiment_usage": {
+            "type": "array"
+          },
+          "length_budget": {
+            "type": "object"
+          },
+          "must_include": {
+            "type": "array"
+          },
+          "must_avoid": {
+            "type": "array"
+          },
+          "draft_status": {
+            "enum": [
+              "ready",
+              "needs_user_input",
+              "blocked"
+            ]
+          },
+          "draft_text_path": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "numeric_claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "numeric_claim": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "unit_or_metric": {
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "paper_table",
+              "experiment_log",
+              "code_config",
+              "user_provided",
+              "venue_rule",
+              "unknown"
+            ]
+          },
+          "source_anchor": {
+            "type": "string"
+          },
+          "checked_against": {
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "verified",
+              "needs_user_confirmation",
+              "blocked"
+            ]
+          }
+        }
+      }
+    },
+    "paper_code_review_alignment": {
+      "type": "array"
+    },
+    "coverage_map": {
+      "type": "array"
+    },
+    "compression_decisions": {
+      "type": "array"
+    },
+    "draft_outputs": {
+      "type": "array"
+    },
+    "safety_precheck": {
+      "type": "object",
+      "properties": {
+        "provenance": {
+          "enum": [
+            "pass",
+            "blocked",
+            "needs_user_confirmation",
+            "unknown"
+          ]
+        },
+        "commitment": {
+          "enum": [
+            "pass",
+            "blocked",
+            "needs_user_confirmation",
+            "unknown"
+          ]
+        },
+        "coverage": {
+          "enum": [
+            "pass",
+            "blocked",
+            "needs_user_confirmation",
+            "unknown"
+          ]
+        },
+        "venue_rule": {
+          "enum": [
+            "pass",
+            "blocked",
+            "needs_user_confirmation",
+            "unknown"
+          ]
+        },
+        "tone": {
+          "enum": [
+            "pass",
+            "blocked",
+            "needs_user_confirmation",
+            "unknown"
+          ]
+        },
+        "anonymity": {
+          "enum": [
+            "pass",
+            "blocked",
+            "needs_user_confirmation",
+            "unknown"
+          ]
+        },
+        "fabrication": {
+          "enum": [
+            "pass",
+            "blocked",
+            "needs_user_confirmation",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "open_questions": {
+      "type": "array"
+    },
+    "language_policy": {
+      "type": "object",
+      "properties": {
+        "interaction_language": {
+          "type": "string",
+          "default": "follow_user"
+        },
+        "final_writing_language": {
+          "type": "string",
+          "default": "English"
+        },
+        "submission_facing_text_is_english": {
+          "type": "boolean",
+          "default": true
+        },
+        "terminology_preservation_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "translation_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

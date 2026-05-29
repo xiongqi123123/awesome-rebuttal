@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Paper Memory",
+  "type": "object",
+  "required": ["version", "status", "paper_identity", "narrative", "claim_evidence_map"],
+  "properties": {
+    "version": {"type": "string"},
+    "status": {"enum": ["complete", "partial", "blocked"]},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "paper_identity": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string"},
+        "short_name": {"type": "string"},
+        "venue": {"type": "string"},
+        "year": {"type": "string"},
+        "field": {"type": "string"},
+        "subfield": {"type": "string"},
+        "task_setting": {"type": "string"},
+        "source_paths": {"type": "array"},
+        "source_version_confidence": {"enum": ["high", "medium", "low", "unknown"]}
+      }
+    },
+    "source_status": {
+      "type": "object",
+      "properties": {
+        "source_type": {"enum": ["pdf", "latex", "pdf_and_latex", "user_summary", "missing", "unknown"]},
+        "current_submission_confirmed": {"type": "boolean"},
+        "extraction_status": {"enum": ["not_started", "complete", "partial", "blocked"]},
+        "blocking_reason": {"type": "string"}
+      }
+    },
+    "narrative": {
+      "type": "object",
+      "properties": {
+        "one_sentence_story": {"type": "string"},
+        "three_bullet_story": {"type": "array"},
+        "problem": {"type": "string"},
+        "gap": {"type": "string"},
+        "core_insight": {"type": "string"},
+        "method_move": {"type": "string"},
+        "evidence_move": {"type": "string"},
+        "main_takeaway": {"type": "string"},
+        "scope_boundary": {"type": "string"},
+        "logic_chain": {"type": "array"}
+      }
+    },
+    "contribution_ledger": {"type": "array"},
+    "method_memory": {"type": "object"},
+    "experiment_matrix": {"type": "array"},
+    "result_ledger": {"type": "array"},
+    "figure_table_index": {"type": "array"},
+    "terminology": {"type": "array"},
+    "claim_evidence_map": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claim_id": {"type": "string"},
+          "claim_type": {"type": "string"},
+          "claim_text": {"type": "string"},
+          "source_anchor": {"type": "string"},
+          "evidence_refs": {"type": "array"},
+          "strength": {"enum": ["central", "supporting", "minor", "unknown"]},
+          "confidence": {"enum": ["high", "medium", "low", "unknown"]},
+          "reviewer_challenge_likelihood": {"enum": ["high", "medium", "low", "unknown"]},
+          "safe_rebuttal_use": {"type": "string"}
+        }
+      }
+    },
+    "limitations_and_weak_points": {"type": "array"},
+    "rebuttal_relevance_map": {"type": "array"},
+    "open_questions": {"type": "array"}
+  }
+}

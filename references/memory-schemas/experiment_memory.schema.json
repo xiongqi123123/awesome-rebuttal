@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Review-Driven Experiment Memory",
+  "type": "object",
+  "required": [
+    "version",
+    "status",
+    "source_review_analysis",
+    "source_review_memory",
+    "experiment_candidates",
+    "triage_summary",
+    "user_decision_state"
+  ],
+  "properties": {
+    "version": {"type": "string"},
+    "status": {"enum": ["complete", "partial", "blocked"]},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "source_review_analysis": {"type": "string"},
+    "source_review_memory": {"type": "string"},
+    "source_paper_memory": {"type": "string"},
+    "source_code_memory": {"type": "string"},
+    "rule_status": {"enum": ["user_confirmed", "needs_user_confirmation", "missing", "not_applicable", "unknown"]},
+    "resource_assumptions": {"type": "object"},
+    "experiment_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["experiment_id", "title", "linked_semantic_concern_ids", "reviewer_sources", "triage_class", "result_status", "user_decision"],
+        "properties": {
+          "experiment_id": {"type": "string", "pattern": "^EXP-[0-9]{3}[a-z]?$"},
+          "title": {"type": "string"},
+          "trigger_summary": {"type": "string"},
+          "linked_semantic_concern_ids": {"type": "array"},
+          "linked_common_cluster_ids": {"type": "array"},
+          "linked_issue_item_ids": {"type": "array"},
+          "reviewer_sources": {"type": "array"},
+          "reviewer_request_type": {"type": "string"},
+          "hypothesis": {"type": "string"},
+          "minimum_viable_experiment": {"type": "string"},
+          "stronger_variant": {"type": "string"},
+          "required_assets": {"type": "object"},
+          "feasibility": {"enum": ["high", "medium", "low", "unknown"]},
+          "venue_rule_compatibility": {"enum": ["allowed", "probably_allowed", "blocked", "needs_user_confirmation", "unknown"]},
+          "risk_if_negative": {"enum": ["low", "medium", "high", "unknown"]},
+          "risk_if_not_done": {"enum": ["low", "medium", "high", "unknown"]},
+          "expected_rebuttal_value": {"enum": ["decision_critical", "high", "medium", "low", "unknown"]},
+          "triage_class": {"enum": ["must_do", "high_value_optional", "nice_to_have", "not_recommended", "needs_user_decision"]},
+          "recommended_decision": {"enum": ["do_now", "do_if_time", "do_not_do", "ask_user", "wait_for_rules"]},
+          "result_status": {"enum": ["already_done", "running", "planned", "not_started", "impossible", "needs_user_input"]},
+          "result_record": {"type": "object"},
+          "response_usage_plan": {"type": "object"},
+          "user_decision": {"enum": ["accepted", "rejected", "defer", "needs_questionnaire", "unset"]},
+          "open_questions": {"type": "array"}
+        }
+      }
+    },
+    "experiment_clusters": {"type": "array"},
+    "triage_summary": {
+      "type": "object",
+      "properties": {
+        "must_do": {"type": "array"},
+        "high_value_optional": {"type": "array"},
+        "nice_to_have": {"type": "array"},
+        "not_recommended": {"type": "array"},
+        "needs_user_decision": {"type": "array"}
+      }
+    },
+    "reviewer_experiment_map": {"type": "array"},
+    "concern_experiment_map": {"type": "array"},
+    "strategy_inputs": {"type": "array"},
+    "user_decision_state": {
+      "type": "object",
+      "properties": {
+        "questionnaire_needed": {"type": "boolean"},
+        "recommended_questions": {"type": "array"},
+        "accepted_experiment_ids": {"type": "array"},
+        "rejected_experiment_ids": {"type": "array"},
+        "deferred_experiment_ids": {"type": "array"}
+      }
+    },
+    "open_questions": {"type": "array"}
+  }
+}

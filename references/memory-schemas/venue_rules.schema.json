@@ -1,0 +1,465 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Venue Rules Memory",
+  "type": "object",
+  "required": [
+    "version",
+    "status",
+    "venue",
+    "year",
+    "source",
+    "response",
+    "formatting",
+    "content_permissions",
+    "anonymity",
+    "confirmation",
+    "language_policy",
+    "unknowns"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "missing",
+        "user_will_provide",
+        "user_confirmed",
+        "ai_found_pending_confirmation",
+        "not_applicable",
+        "blocked"
+      ]
+    },
+    "venue": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    },
+    "track_or_program": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "source_type",
+        "source_confidence"
+      ],
+      "properties": {
+        "source_type": {
+          "enum": [
+            "user_pasted",
+            "user_file",
+            "official_url",
+            "official_pdf",
+            "official_template",
+            "ai_search_candidate",
+            "unknown"
+          ]
+        },
+        "source_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "retrieved_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown"
+          ]
+        },
+        "citation_or_anchor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "required": [
+        "mode",
+        "platform",
+        "limits"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "openreview_per_reviewer",
+            "unified_limited",
+            "pdf_one_page",
+            "global_comment",
+            "hybrid",
+            "openreview_markdown_latex",
+            "unknown"
+          ]
+        },
+        "original_mode_label": {
+          "type": "string"
+        },
+        "platform": {
+          "enum": [
+            "openreview",
+            "cmt",
+            "softconf",
+            "hotcrp",
+            "email_or_pdf",
+            "other",
+            "unknown"
+          ]
+        },
+        "limits": {
+          "type": "object",
+          "properties": {
+            "page_limit": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "word_limit": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "character_limit": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "file_size_limit_mb": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "deadline": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "timezone": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "other_limit_notes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "per_reviewer_replies_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "global_response_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "interactive_discussion_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "ac_summary_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "reply_visibility": {
+          "enum": [
+            "public_to_reviewers",
+            "visible_to_ac_only",
+            "private_to_author_ac",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "formatting": {
+      "type": "object",
+      "properties": {
+        "official_template_required": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "official_template_url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pdf_required": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "latex_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "markdown_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "markdown_latex_math_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "figures_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "tables_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "appendix_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "font_or_margin_rules": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "content_permissions": {
+      "type": "object",
+      "properties": {
+        "new_experiments_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "new_results_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "external_links_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "supplement_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "code_links_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "revision_commitments_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "references_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "paper_revision_allowed_during_rebuttal": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "post_rebuttal_discussion_allowed": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "anonymity": {
+      "type": "object",
+      "properties": {
+        "anonymous_required": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "self_citation_policy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "acknowledgement_policy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "artifact_identity_risk_notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "confirmation": {
+      "type": "object",
+      "required": [
+        "confirmed_by_user"
+      ],
+      "properties": {
+        "confirmed_by_user": {
+          "type": "boolean"
+        },
+        "confirmed_by_user_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confirmed_by": {
+          "enum": [
+            "user",
+            "not_confirmed",
+            "not_applicable"
+          ]
+        },
+        "pending_confirmation_items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rule_conflicts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "language_policy": {
+      "type": "object",
+      "properties": {
+        "interaction_language": {
+          "type": "string",
+          "default": "follow_user"
+        },
+        "submission_language": {
+          "type": "string",
+          "default": "English"
+        },
+        "final_writing_language": {
+          "type": "string",
+          "default": "English"
+        },
+        "language_exception_allowed_by_rules": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "raw_rules_excerpt": {
+      "type": "string"
+    }
+  }
+}

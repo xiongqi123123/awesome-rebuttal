@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Safety Memory",
+  "type": "object",
+  "required": ["version", "overall", "gates", "blocking_fixes"],
+  "properties": {
+    "version": {"type": "string"},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "overall": {"enum": ["pass", "blocked", "needs_user_confirmation"]},
+    "checked_files": {"type": "array"},
+    "gates": {
+      "type": "object",
+      "properties": {
+        "provenance": {"enum": ["pass", "blocked", "needs_user_confirmation"]},
+        "experiment_result": {"enum": ["pass", "blocked", "needs_user_confirmation"]},
+        "commitment": {"enum": ["pass", "blocked", "needs_user_confirmation"]},
+        "coverage": {"enum": ["pass", "blocked", "needs_user_confirmation"]},
+        "venue_rule": {"enum": ["pass", "blocked", "needs_user_confirmation"]},
+        "tone": {"enum": ["pass", "blocked", "needs_user_confirmation"]},
+        "anonymity_privacy": {"enum": ["pass", "blocked", "needs_user_confirmation"]},
+        "consistency": {"enum": ["pass", "blocked", "needs_user_confirmation"]},
+        "unknown_todos": {"enum": ["pass", "blocked", "needs_user_confirmation"]}
+      }
+    },
+    "claim_audit": {"type": "array"},
+    "blocking_fixes": {"type": "array"},
+    "route_back": {"type": "array"},
+    "approval_note": {"type": "string"}
+  }
+}

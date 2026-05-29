@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Code Memory",
+  "type": "object",
+  "required": ["version", "status", "codebase", "claim_code_map"],
+  "properties": {
+    "version": {"type": "string"},
+    "status": {"enum": ["complete", "partial", "blocked", "unavailable"]},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "codebase": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string"},
+        "available": {"type": "boolean"},
+        "language_stack": {"type": "array"},
+        "framework_stack": {"type": "array"},
+        "git": {"type": "object"},
+        "docs": {"type": "array"},
+        "confidence": {"enum": ["high", "medium", "low", "unknown"]}
+      }
+    },
+    "architecture_map": {"type": "array"},
+    "innovation_implementation_map": {"type": "array"},
+    "config_hyperparameter_ledger": {"type": "array"},
+    "entrypoints": {"type": "array"},
+    "reproduction_commands": {"type": "array"},
+    "dataset_pipeline": {"type": "array"},
+    "evaluation_pipeline": {"type": "array"},
+    "result_log_index": {"type": "array"},
+    "claim_code_map": {"type": "array"},
+    "code_to_possible_claims": {"type": "array"},
+    "experiment_feasibility_map": {"type": "array"},
+    "reproducibility_risks": {"type": "array"},
+    "unknowns": {"type": "array"},
+    "open_questions": {"type": "array"}
+  }
+}
