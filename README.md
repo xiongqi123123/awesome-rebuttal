@@ -72,13 +72,17 @@ Restart or reload Claude Code after installation.
 
 ### Option C: AI-assisted installation
 
-Give the repository URL and [`AI_AGENT_INSTALL.md`](AI_AGENT_INSTALL.md) to a local AI coding assistant and ask it to install the skill for Codex, Claude Code, or Cursor.
+Send this installation guide link directly to a local AI coding assistant and ask it to follow the instructions:
+
+- GitHub view: https://github.com/xiongqi123123/awesome-rebuttal/blob/main/AI_AGENT_INSTALL.md
+- Raw Markdown: https://raw.githubusercontent.com/xiongqi123123/awesome-rebuttal/main/AI_AGENT_INSTALL.md
 
 Suggested prompt:
 
 ```text
-Install Awesome Rebuttal from https://github.com/xiongqi123123/awesome-rebuttal.
-Follow AI_AGENT_INSTALL.md. Do not overwrite existing files without backup.
+Please install Awesome Rebuttal by following this guide:
+https://github.com/xiongqi123123/awesome-rebuttal/blob/main/AI_AGENT_INSTALL.md
+Do not overwrite existing files without backup.
 ```
 
 ### Option D: Cursor project rule

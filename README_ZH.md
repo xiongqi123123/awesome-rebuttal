@@ -72,13 +72,17 @@ rsync -a --exclude '.git/' --exclude '.awesome-rebuttal/' ./ "$TARGET"/
 
 ### 方式 C：让大模型辅助安装
 
-把仓库地址和 [`AI_AGENT_INSTALL.md`](AI_AGENT_INSTALL.md) 发给本地 AI 编程助手，让它帮你安装到 Codex、Claude Code 或 Cursor。
+直接把下面这个安装说明链接发给本地 AI 编程助手，让它按说明安装即可：
+
+- GitHub 页面：https://github.com/xiongqi123123/awesome-rebuttal/blob/main/AI_AGENT_INSTALL.md
+- Raw Markdown：https://raw.githubusercontent.com/xiongqi123123/awesome-rebuttal/main/AI_AGENT_INSTALL.md
 
 推荐提示词：
 
 ```text
-请从 https://github.com/xiongqi123123/awesome-rebuttal 安装 Awesome Rebuttal。
-按照 AI_AGENT_INSTALL.md 操作，不要在没有备份的情况下覆盖已有文件。
+请按照这个安装说明安装 Awesome Rebuttal：
+https://github.com/xiongqi123123/awesome-rebuttal/blob/main/AI_AGENT_INSTALL.md
+不要在没有备份的情况下覆盖已有文件。
 ```
 
 ### 方式 D：Cursor 项目规则
