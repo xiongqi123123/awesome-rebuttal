@@ -23,7 +23,9 @@
 
 `Awesome Rebuttal` is a global-installable, project-level skill for AI / ML / CV / NLP / Robotics paper rebuttals. It helps an AI coding assistant work inside a paper workspace, persist structured rebuttal memory, analyze reviewer concerns, plan supplementary experiments, and draft safe author responses under user-confirmed venue rules.
 
-It is **not** affiliated with any conference, publisher, review platform, or submission system.
+## Disclaimer
+
+Awesome Rebuttal is **not affiliated with, endorsed by, or officially connected to** any conference, publisher, review platform, or submission system. It is an assistant workflow for organizing evidence and drafting rebuttal text; it does not guarantee acceptance and does not replace the author's responsibility. Before submitting, authors must independently verify the venue rules, anonymity requirements, factual claims, experimental numbers, formatting, and final uploaded files.
 
 ## Highlights
 
