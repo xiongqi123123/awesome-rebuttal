@@ -115,11 +115,11 @@ Run inside the user's target project/workspace, not necessarily inside this skil
 mkdir -p .cursor/rules
 cat > .cursor/rules/awesome-rebuttal.mdc <<'RULE'
 ---
-description: Use the installed awesome-rebuttal skill for academic rebuttal workflows.
+description: Use the installed Awesome Rebuttal skill for academic rebuttal workflows.
 alwaysApply: false
 ---
 
-When the user asks for academic paper rebuttal help, use the installed or cloned awesome-rebuttal skill.
+When the user asks for academic paper rebuttal help, use the installed or cloned Awesome Rebuttal skill.
 
 Find the skill entry at one of:
 - a local cloned package containing `SKILL.md`

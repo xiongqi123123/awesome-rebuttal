@@ -1,7 +1,7 @@
 <div align="center">
-  <img src="assets/image/awesome-rebuttal.png" alt="awesome-rebuttal logo" width="260" />
+  <img src="assets/image/awesome-rebuttal.png" alt="Awesome Rebuttal logo" width="260" />
 
-# awesome-rebuttal
+# Awesome Rebuttal
 
 **A project-level skill package for evidence-grounded academic rebuttal strategy and author-response drafting.**
 
@@ -21,7 +21,7 @@
 
 ## What is this?
 
-`awesome-rebuttal` is a global-installable, project-level skill for AI / ML / CV / NLP / Robotics paper rebuttals. It helps an AI coding assistant work inside a paper workspace, persist structured rebuttal memory, analyze reviewer concerns, plan supplementary experiments, and draft safe author responses under user-confirmed venue rules.
+`Awesome Rebuttal` is a global-installable, project-level skill for AI / ML / CV / NLP / Robotics paper rebuttals. It helps an AI coding assistant work inside a paper workspace, persist structured rebuttal memory, analyze reviewer concerns, plan supplementary experiments, and draft safe author responses under user-confirmed venue rules.
 
 It is **not** affiliated with any conference, publisher, review platform, or submission system.
 
@@ -75,7 +75,7 @@ Give the repository URL and [`AI_AGENT_INSTALL.md`](AI_AGENT_INSTALL.md) to a lo
 Suggested prompt:
 
 ```text
-Install awesome-rebuttal from https://github.com/xiongqi123123/awesome-rebuttal.
+Install Awesome Rebuttal from https://github.com/xiongqi123123/awesome-rebuttal.
 Follow AI_AGENT_INSTALL.md. Do not overwrite existing files without backup.
 ```
 
@@ -88,7 +88,7 @@ Cursor can use a project rule that points to this cloned or installed skill. See
 In a paper rebuttal workspace, ask your AI assistant:
 
 ```text
-Use awesome-rebuttal to initialize this rebuttal workspace.
+Use Awesome Rebuttal to initialize this rebuttal workspace.
 ```
 
 Recommended workspace layout:
@@ -144,7 +144,7 @@ Final submission-facing rebuttal prose defaults to English unless the user reque
 
 ## Safety policy
 
-`awesome-rebuttal` should not:
+`Awesome Rebuttal` should not:
 
 - invent experiment results, numbers, citations, reviewer positions, or venue permissions;
 - attack reviewers or imply bad faith;
