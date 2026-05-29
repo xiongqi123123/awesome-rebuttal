@@ -1,113 +1,167 @@
+<div align="center">
+  <img src="assets/image/awesome-rebuttal.png" alt="awesome-rebuttal logo" width="260" />
+
 # awesome-rebuttal
 
-`awesome-rebuttal` is a global-installable but project-level skill for AI / ML / CV / NLP / Robotics paper rebuttals. The installed skill supplies reusable workflows and assets; each actual rebuttal workspace gets its own `.awesome-rebuttal/` folder for JSON memory, snapshots, templates, logs, and cache. It helps authors organize a rebuttal workspace, collect paper/code/review context, analyze reviewer concerns, plan supplementary experiments, and draft safe author responses under confirmed venue rules.
+**A project-level skill package for evidence-grounded academic rebuttal strategy and author-response drafting.**
 
-## Philosophy
+[English](README.md) · [简体中文](README_ZH.md)
 
-- Strategy before prose.
-- Evidence before claims.
-- User-confirmed venue rules before formatting assumptions.
-- Author control before automation.
+[![GitHub Repo](https://img.shields.io/badge/GitHub-xiongqi123123%2Fawesome--rebuttal-181717?logo=github)](https://github.com/xiongqi123123/awesome-rebuttal)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/xiongqi123123/awesome-rebuttal?style=social)](https://github.com/xiongqi123123/awesome-rebuttal/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/xiongqi123123/awesome-rebuttal?style=social)](https://github.com/xiongqi123123/awesome-rebuttal/forks)
+[![Codex Skill](https://img.shields.io/badge/Codex-Skill-blue)](SKILL.md)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-orange)](AI_AGENT_INSTALL.md)
+[![Cursor](https://img.shields.io/badge/Cursor-Rules%20Adapter-purple)](AI_AGENT_INSTALL.md)
 
+</div>
 
-## AI-agent installation
+---
 
-For users who want to paste this repository link into an AI coding assistant and ask it to install the skill, use [`AI_AGENT_INSTALL.md`](AI_AGENT_INSTALL.md). It contains copy/paste-safe instructions for Codex, Claude Code, Cursor, optional LaTeX checks, and optional LeafLink setup.
+## What is this?
 
-## Project-local skill state
+`awesome-rebuttal` is a global-installable, project-level skill for AI / ML / CV / NLP / Robotics paper rebuttals. It helps an AI coding assistant work inside a paper workspace, persist structured rebuttal memory, analyze reviewer concerns, plan supplementary experiments, and draft safe author responses under user-confirmed venue rules.
 
-Each runtime workspace should contain a skill-owned state folder:
+It is **not** affiliated with any conference, publisher, review platform, or submission system.
 
-```text
-.awesome-rebuttal/
-├── memory/
-├── snapshots/
-├── templates/
-├── logs/
-└── cache/
+## Highlights
+
+- **Skill-first architecture** — one `SKILL.md` entry with layered atomic capability files.
+- **Project-local state** — runtime memory, drafts, snapshots, templates, and logs stay under `.awesome-rebuttal/` in each paper workspace.
+- **Review understanding** — normalize reviewer metadata, raw comments, atomic concerns, and common concern clusters.
+- **Strategy planning** — reason about rebuttal posture, priority concerns, reviewer-specific goals, and AC-facing decision facts.
+- **Experiment triage** — separate must-do, high-value optional, not-recommended, and infeasible rebuttal experiments.
+- **Format-aware drafting** — supports one-page PDF, OpenReview-style per-reviewer replies, global comments, hybrid responses, and Markdown+LaTeX comments.
+- **Safety gates** — block unsupported claims, fabricated results, unconfirmed venue permissions, hostile tone, and anonymity leaks.
+- **Optional Overleaf sync** — can guide LeafLink setup only when the user wants cloud/local synchronization.
+
+## Installation
+
+The published repository root is the skill package root. After cloning, the directory should contain `SKILL.md` directly.
+
+```bash
+git clone https://github.com/xiongqi123123/awesome-rebuttal.git
+cd awesome-rebuttal
+test -f SKILL.md
 ```
 
-Do not store runtime memory in the global installed skill folder.
+### Option A: install manually for Codex
 
-## Recommended rebuttal workspace
+```bash
+CODEX_SKILLS_DIR="${CODEX_HOME:-$HOME/.codex}/skills"
+TARGET="$CODEX_SKILLS_DIR/awesome-rebuttal"
+mkdir -p "$CODEX_SKILLS_DIR"
+rsync -a --exclude '.git/' --exclude '.awesome-rebuttal/' ./ "$TARGET"/
+```
 
-Create a dedicated workspace for each paper/rebuttal:
+Restart Codex after installation.
+
+### Option B: install manually for Claude Code
+
+```bash
+CLAUDE_SKILLS_DIR="$HOME/.claude/skills"
+TARGET="$CLAUDE_SKILLS_DIR/awesome-rebuttal"
+mkdir -p "$CLAUDE_SKILLS_DIR"
+rsync -a --exclude '.git/' --exclude '.awesome-rebuttal/' ./ "$TARGET"/
+```
+
+Restart or reload Claude Code after installation.
+
+### Option C: AI-assisted installation
+
+Give the repository URL and [`AI_AGENT_INSTALL.md`](AI_AGENT_INSTALL.md) to a local AI coding assistant and ask it to install the skill for Codex, Claude Code, or Cursor.
+
+Suggested prompt:
+
+```text
+Install awesome-rebuttal from https://github.com/xiongqi123123/awesome-rebuttal.
+Follow AI_AGENT_INSTALL.md. Do not overwrite existing files without backup.
+```
+
+### Option D: Cursor project rule
+
+Cursor can use a project rule that points to this cloned or installed skill. See [`AI_AGENT_INSTALL.md`](AI_AGENT_INSTALL.md) for the minimal `.cursor/rules/awesome-rebuttal.mdc` adapter.
+
+## Basic usage
+
+In a paper rebuttal workspace, ask your AI assistant:
+
+```text
+Use awesome-rebuttal to initialize this rebuttal workspace.
+```
+
+Recommended workspace layout:
 
 ```text
 <rebuttal-workspace>/
-├── Code/        # code repositories, scripts, configs, reproduced outputs
-├── Paper/       # paper PDF/LaTeX; Overleaf sync target if used
-├── Reference/   # reviews, venue instructions, reference papers, notes
-└── Temp/        # scratch extraction, intermediate analysis, cache
+├── Code/
+├── Paper/
+├── Reference/
+├── Temp/
+└── .awesome-rebuttal/
+    ├── memory/
+    ├── drafts/
+    ├── snapshots/
+    ├── templates/
+    ├── logs/
+    └── cache/
 ```
 
-If the workspace is empty, the skill can organize it this way. If it already contains files, the skill should adapt non-destructively.
+If your workspace already has a different structure, the skill should map it non-destructively instead of forcing renames.
 
-## Repository/package root
+## Host compatibility
 
-The published repository root is this directory: it contains `SKILL.md` directly. If you are developing from a larger workspace, publish the inner `awesome-rebuttal/` package directory, not the outer development workspace.
+| Host | Status | Install style |
+|---|---|---|
+| Codex | Native skill package | copy to `~/.codex/skills/awesome-rebuttal` |
+| Claude Code | Skill-compatible package | copy to `~/.claude/skills/awesome-rebuttal` |
+| Cursor | Project rule adapter | create `.cursor/rules/awesome-rebuttal.mdc` |
+| Other agents | Prompt/reference package | point the agent to `SKILL.md` |
 
-## One-page rebuttal template
+Questionnaire-style choices do not require an external dependency. Use a host-native choice UI if available, otherwise plain Markdown choices are enough.
 
-The skill includes a built-in fallback one-page two-column rebuttal template at:
+## Response modes
 
-```text
-assets/one-page-rebuttal-template/
-```
+The skill uses a canonical response-mode vocabulary in memory:
 
-If the venue provides an official template, use the official template. If no official template is available and the user still wants one-page PDF output, the skill may copy this built-in CVPR/ECCV-style fallback into `.awesome-rebuttal/templates/active-rebuttal-template/` and adapt conference metadata. Never present the fallback as official.
+- `openreview_per_reviewer`
+- `unified_limited`
+- `pdf_one_page`
+- `global_comment`
+- `hybrid`
+- `openreview_markdown_latex`
+- `unknown`
 
-## Overleaf workflow
+Final submission-facing rebuttal prose defaults to English unless the user requests another language and confirmed venue rules allow it.
 
-If your paper is hosted on Overleaf or cn.overleaf, the skill can ask whether you want a local synced copy in `Paper/`. For that situation, you can optionally use [LeafLink](https://github.com/xiongqi123123/LeafLink), a CLI for syncing local folders with Overleaf projects.
+## Included assets
 
-This is not required and is never inserted into submission-facing rebuttal text.
+- Built-in fallback one-page LaTeX rebuttal template: [`assets/one-page-rebuttal-template/`](assets/one-page-rebuttal-template/)
+- Snapshot renderer: [`scripts/render_snapshot.py`](scripts/render_snapshot.py)
+- Memory schemas: [`references/memory-schemas/`](references/memory-schemas/)
+- Capability files: [`references/capabilities/`](references/capabilities/)
 
-## LaTeX environment
+## Safety policy
 
-Workspace bootstrap checks for `latexmk`, `pdflatex`, `xelatex`, `lualatex`, `bibtex`/`biber`, `kpsewhich`, or `tectonic`. If a PDF rebuttal is needed and LaTeX is missing, the skill should ask the user whether to install/configure a platform-specific toolchain, compile on Overleaf, or skip local compilation.
+`awesome-rebuttal` should not:
 
-## Skill layout
+- invent experiment results, numbers, citations, reviewer positions, or venue permissions;
+- attack reviewers or imply bad faith;
+- bypass anonymity or venue rules;
+- over-promise future revisions;
+- insert LeafLink/local tooling text into submission-facing rebuttal content.
 
-The installable skill/package root is:
+## License
 
-```text
-.
-├── SKILL.md
-├── agents/openai.yaml
-├── references/
-│   ├── capabilities/
-│   ├── templates/
-│   ├── strategy-library/
-│   ├── memory-schemas/
-│   └── examples/
-└── assets/
-    └── one-page-rebuttal-template/
-```
+MIT License. See [`LICENSE`](LICENSE).
 
-`SKILL.md` is intentionally a thin router. Each atomic capability has its own file.
+## Star History
 
-## Questionnaire-first clarification
-
-When required information is missing, the skill should not guess. It summarizes what it found, then asks a compact questionnaire using single-choice, multi-select, short-text, or confirmation prompts. This applies first to workspace bootstrap and intake, then to later venue-rule, experiment, and drafting decisions.
-
-## Progress preservation
-
-At runtime, choose one:
-
-- `manual_git`: the skill suggests checkpoint boundaries and commit messages.
-- `auto_git`: the skill can make local milestone commits; no push or destructive git actions.
-- `markdown_snapshot_only`: the skill maintains `.awesome-rebuttal/snapshots/REBUTTAL_SNAPSHOT.md` / `.awesome-rebuttal/snapshots/PROJECT_SNAPSHOT.md` for context reload.
-
-
-## Language and response modes
-
-The skill follows the user's language for interactive analysis and questionnaires by default. Final submission-facing rebuttal text is written in English unless the user explicitly requests another language and the venue permits it.
-
-Canonical response modes used in memory are: `openreview_per_reviewer`, `unified_limited`, `pdf_one_page`, `global_comment`, `hybrid`, `openreview_markdown_latex`, and `unknown`.
-
-Venue rules are stored in `.awesome-rebuttal/memory/venue_rules.json` using the bundled schema. The schema separates source/confirmation, canonical response mode and limits, formatting rules, content permissions, anonymity, and language policy. AI-found rules remain pending until the user confirms them.
-
-## Safety
-
-The skill blocks finalization if factual claims lack provenance, reviewer concerns disappear, venue rules are unconfirmed, or the tone becomes unprofessional.
+<a href="https://www.star-history.com/#xiongqi123123/awesome-rebuttal&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=xiongqi123123/awesome-rebuttal&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=xiongqi123123/awesome-rebuttal&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=xiongqi123123/awesome-rebuttal&type=Date" />
+  </picture>
+</a>

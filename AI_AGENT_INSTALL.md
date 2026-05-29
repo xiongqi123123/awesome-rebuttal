@@ -1,8 +1,17 @@
 # AI Agent Installation Guide
 
+Repository: https://github.com/xiongqi123123/awesome-rebuttal
+
 This file is for an AI coding agent installing this repository as an agent skill. Keep installation safe and non-destructive.
 
-## 1. Verify package root
+## 1. Clone and verify package root
+
+If the repository has not been cloned yet:
+
+```bash
+git clone https://github.com/xiongqi123123/awesome-rebuttal.git
+cd awesome-rebuttal
+```
 
 Run from the cloned repository root. This directory must contain `SKILL.md` directly:
 
@@ -67,7 +76,7 @@ mkdir -p "$TARGET"
 if command -v rsync >/dev/null 2>&1; then
   rsync -a --exclude '.git/' --exclude '.awesome-rebuttal/' --exclude '__pycache__/' ./ "$TARGET"/
 else
-  cp -R SKILL.md agents references assets scripts README.md AI_AGENT_INSTALL.md LICENSE "$TARGET"/
+  cp -R SKILL.md agents references assets scripts README.md README_ZH.md AI_AGENT_INSTALL.md LICENSE "$TARGET"/
 fi
 
 test -f "$TARGET/SKILL.md"
@@ -90,7 +99,7 @@ mkdir -p "$TARGET"
 if command -v rsync >/dev/null 2>&1; then
   rsync -a --exclude '.git/' --exclude '.awesome-rebuttal/' --exclude '__pycache__/' ./ "$TARGET"/
 else
-  cp -R SKILL.md agents references assets scripts README.md AI_AGENT_INSTALL.md LICENSE "$TARGET"/
+  cp -R SKILL.md agents references assets scripts README.md README_ZH.md AI_AGENT_INSTALL.md LICENSE "$TARGET"/
 fi
 
 test -f "$TARGET/SKILL.md"
