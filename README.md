@@ -114,7 +114,7 @@ Recommended workspace layout:
     └── cache/
 ```
 
-If your workspace already has a different structure, the skill should map it non-destructively instead of forcing renames.
+If your workspace already has a different structure, the skill will map it non-destructively instead of forcing renames.
 
 ## Host compatibility
 
@@ -125,21 +125,6 @@ If your workspace already has a different structure, the skill should map it non
 | Cursor | Project rule adapter | create `.cursor/rules/awesome-rebuttal.mdc` |
 | Other agents | Prompt/reference package | point the agent to `SKILL.md` |
 
-Questionnaire-style choices do not require an external dependency. Use a host-native choice UI if available, otherwise plain Markdown choices are enough.
-
-## Response modes
-
-The skill uses a canonical response-mode vocabulary in memory:
-
-- `openreview_per_reviewer`
-- `unified_limited`
-- `pdf_one_page`
-- `global_comment`
-- `hybrid`
-- `openreview_markdown_latex`
-- `unknown`
-
-Final submission-facing rebuttal prose defaults to English unless the user requests another language and confirmed venue rules allow it.
 
 ## Included assets
 
@@ -156,7 +141,7 @@ Final submission-facing rebuttal prose defaults to English unless the user reque
 - attack reviewers or imply bad faith;
 - bypass anonymity or venue rules;
 - over-promise future revisions;
-- insert LeafLink/local tooling text into submission-facing rebuttal content.
+- insert LeafLink, local tooling instructions, or any other paper-irrelevant content into final submission-facing text.
 
 ## License
 

@@ -114,7 +114,7 @@ Use Awesome Rebuttal to initialize this rebuttal workspace.
     └── cache/
 ```
 
-如果你的工作区已经有其他结构，skill 应该非破坏式地识别和映射，而不是强制重命名。
+如果你的工作区已经有其他结构，skill 会非破坏式地识别和映射，而不会强制重命名。
 
 ## 宿主环境兼容性
 
@@ -124,22 +124,6 @@ Use Awesome Rebuttal to initialize this rebuttal workspace.
 | Claude Code | skill-compatible 包 | 复制到 `~/.claude/skills/awesome-rebuttal` |
 | Cursor | 项目规则 adapter | 创建 `.cursor/rules/awesome-rebuttal.mdc` |
 | 其他 agent | Prompt/reference 包 | 让 agent 读取 `SKILL.md` |
-
-选择题/问卷不需要额外依赖。宿主有原生选择 UI 就用原生 UI；没有的话，普通 Markdown 的 A/B/C 或 checkbox 就足够。
-
-## Response modes
-
-skill 在 memory 中使用统一的 response mode 命名：
-
-- `openreview_per_reviewer`
-- `unified_limited`
-- `pdf_one_page`
-- `global_comment`
-- `hybrid`
-- `openreview_markdown_latex`
-- `unknown`
-
-交互分析默认跟随用户语言；最终投稿相关 rebuttal 文本默认使用英文，除非用户要求其他语言且会议规则允许。
 
 ## 内置资源
 
@@ -156,7 +140,7 @@ skill 在 memory 中使用统一的 response mode 命名：
 - 攻击 reviewer 或暗示 reviewer 恶意；
 - 绕过匿名规则或会议规则；
 - 过度承诺未来修改；
-- 把 LeafLink 或本地工具说明写进最终投稿文本。
+- 把 LeafLink 或本地工具说明等其他与论文不相关的任何东西写进最终投稿文本。
 
 ## License
 
