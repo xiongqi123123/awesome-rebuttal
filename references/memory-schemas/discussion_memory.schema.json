@@ -1,0 +1,300 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Discussion Memory",
+  "type": "object",
+  "required": [
+    "version",
+    "status",
+    "current_round",
+    "rounds",
+    "reviewer_engagement"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "closed",
+        "blocked"
+      ]
+    },
+    "discussion_window": {
+      "type": "object",
+      "properties": {
+        "opens": {
+          "type": "string"
+        },
+        "closes": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "venue_allows_followup": {
+          "enum": [
+            "yes",
+            "no",
+            "limited",
+            "unknown"
+          ]
+        },
+        "followup_scope": {
+          "enum": [
+            "per_reviewer",
+            "global",
+            "both",
+            "unknown"
+          ]
+        },
+        "nudge_policy": {
+          "enum": [
+            "allowed_once",
+            "discouraged",
+            "forbidden",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "current_round": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "rounds": {
+      "type": "array",
+      "description": "round-1 is the initial rebuttal (owned by 11); round 2+ are discussion follow-ups owned by 19.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "round_id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "initial_rebuttal",
+              "discussion_followup"
+            ]
+          },
+          "submitted_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reviewer_engagement": {
+      "type": "array",
+      "description": "One row per reviewer/AC, updated every round. Lightweight score/engagement tracker.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stable_label": {
+            "type": "string"
+          },
+          "anonymous_id": {
+            "type": "string"
+          },
+          "initial_score": {
+            "type": "string"
+          },
+          "initial_confidence": {
+            "type": "string"
+          },
+          "current_score": {
+            "type": "string"
+          },
+          "score_delta": {
+            "type": "string"
+          },
+          "score_source": {
+            "enum": [
+              "stated",
+              "inferred",
+              "unchanged_assumed"
+            ],
+            "description": "stated only when the reviewer explicitly gave a value/direction; never write inferred as stated."
+          },
+          "replied_in_discussion": {
+            "enum": [
+              "yes",
+              "no",
+              "unknown"
+            ]
+          },
+          "last_reply_round": {
+            "type": "string"
+          },
+          "stance_now": {
+            "enum": [
+              "satisfied",
+              "still_unconvinced",
+              "new_question",
+              "silent",
+              "disengaged"
+            ]
+          },
+          "open_concern_ids": {
+            "type": "array"
+          },
+          "resolved_concern_ids": {
+            "type": "array"
+          },
+          "next_action": {
+            "enum": [
+              "respond",
+              "concede",
+              "hold",
+              "escalate_ac",
+              "stop"
+            ]
+          },
+          "etiquette_note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "incoming_followups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "followup_id": {
+            "type": "string"
+          },
+          "round_id": {
+            "type": "string"
+          },
+          "reviewer": {
+            "type": "object"
+          },
+          "raw_excerpt_anchor": {
+            "type": "string"
+          },
+          "classification": {
+            "enum": [
+              "acknowledged_resolved",
+              "still_unconvinced",
+              "partial",
+              "new_question",
+              "score_signal",
+              "procedural",
+              "ac_question",
+              "off_topic"
+            ]
+          },
+          "refers_to_concern_ids": {
+            "type": "array"
+          },
+          "refers_to_response_unit_ids": {
+            "type": "array"
+          },
+          "is_new_concern": {
+            "type": "boolean"
+          },
+          "score_signal": {
+            "type": "object"
+          },
+          "sentiment": {
+            "enum": [
+              "positive",
+              "neutral",
+              "negative",
+              "mixed"
+            ]
+          },
+          "requires_response": {
+            "enum": [
+              "yes",
+              "optional",
+              "no"
+            ]
+          },
+          "priority": {
+            "enum": [
+              "decision_critical",
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        }
+      }
+    },
+    "thread_decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "thread_id": {
+            "type": "string"
+          },
+          "reviewer": {
+            "type": "object"
+          },
+          "decision": {
+            "enum": [
+              "respond",
+              "concede",
+              "hold",
+              "escalate_ac",
+              "stop"
+            ]
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "uses_anticipated_bank": {
+            "type": "array"
+          },
+          "needs_new_evidence": {
+            "type": "string"
+          },
+          "draft_followup_id": {
+            "type": "string"
+          },
+          "length_target": {
+            "type": "string"
+          },
+          "must_avoid": {
+            "type": "array"
+          },
+          "user_decision_required": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "drafted_followups": {
+      "type": "array"
+    },
+    "new_concerns_routed": {
+      "type": "array",
+      "description": "New concerns raised in discussion that were routed to 06/10/08 before drafting."
+    },
+    "anticipated_bank_usage": {
+      "type": "array",
+      "description": "Which rehearsal_memory.anticipated_followups entries were reused this round."
+    },
+    "stop_assessment": {
+      "type": "object"
+    },
+    "etiquette_flags": {
+      "type": "array",
+      "description": "Any nudge/score-pressure/reviewer-vs-reviewer risks caught before posting."
+    },
+    "routes": {
+      "type": "array"
+    },
+    "open_questions": {
+      "type": "array"
+    }
+  }
+}

@@ -38,6 +38,54 @@ Awesome Rebuttal is **not affiliated with, endorsed by, or officially connected 
 - **Safety gates** — block unsupported claims, fabricated results, unconfirmed venue permissions, hostile tone, and anonymity leaks.
 - **Optional Overleaf sync** — can guide LeafLink setup only when the user wants cloud/local synchronization.
 
+## How it works
+
+Awesome Rebuttal is a **full-lifecycle pipeline**, not a one-shot drafting prompt. Capability files are atomic and loaded only when the current step needs them. The skill walks a paper from intake all the way through the multi-round discussion period:
+
+```mermaid
+flowchart TD
+    Start([Author opens a rebuttal workspace]) --> P1
+    subgraph P1["1 - Setup"]
+        direction LR
+        n00[00 Bootstrap] --> n01[01 Intake gate] --> n17[17 Template mgr]
+    end
+    P1 --> P2
+    subgraph P2["2 - Evidence and memory"]
+        direction LR
+        n02[02 Info collection] --> n03[03 Paper memory]
+        n02 --> n04[04 Code memory]
+    end
+    P2 --> P3
+    subgraph P3["3 - Review understanding"]
+        direction LR
+        n05[05 Normalize] --> n06[06 Situation analyzer]
+    end
+    P3 --> P4
+    subgraph P4["4 - Strategy"]
+        direction LR
+        n10[10 Experiment triage] --> n07[07 Priority] --> n08[08 Strategy planner]
+    end
+    P4 --> P5
+    subgraph P5["5 - Drafting"]
+        direction LR
+        n11[11 Response writer] --> n12[12 Template]
+        n11 --> n13[13 AC summary]
+    end
+    P5 --> P6
+    subgraph P6["6 - Pre-submission gates"]
+        direction LR
+        n18[18 Rehearsal] --> n14[14 Safety gate]
+    end
+    P6 -->|submit| P7
+    subgraph P7["7 - Discussion rounds - loop"]
+        n19[19 Discussion handler]
+    end
+    n18 -.->|harden| n11
+    P7 -.->|new concern| P3
+```
+
+Running throughout: **09 snapshots** and **16 versioning** checkpoint progress at every durable step, and **15 Overleaf/LeafLink sync** runs only when the paper lives on Overleaf. Every factual claim stays grounded in `paper` / `code` / `review` / `venue_rules` / `user` / explicit `inference`, and nothing reaches the conference system until the **safety gate (14)** passes.
+
 ## Installation
 
 The published repository root is the skill package root. After cloning, the directory should contain `SKILL.md` directly.
@@ -91,10 +139,23 @@ Cursor can use a project rule that points to this cloned or installed skill. See
 
 ## Basic usage
 
-In a paper rebuttal workspace, ask your AI assistant:
+In a paper rebuttal workspace, point your AI assistant at the skill. Common entry points:
 
 ```text
+# Set up the workspace and memory
 Use Awesome Rebuttal to initialize this rebuttal workspace.
+
+# Understand the reviews and plan strategy
+Use Awesome Rebuttal: the reviews are in Reference/. Build the concern analysis and a strategy plan.
+
+# Draft a format-aware response
+Use Awesome Rebuttal to draft a one-page PDF rebuttal from the approved strategy.
+
+# Stress-test before submitting
+Use Awesome Rebuttal to rehearse the rebuttal: simulate the reviewers and AC, and tell me what to harden.
+
+# Handle the discussion period
+Use Awesome Rebuttal: here is Reviewer 2's follow-up reply — help me decide whether and how to respond.
 ```
 
 Recommended workspace layout:
@@ -132,6 +193,24 @@ If your workspace already has a different structure, the skill will map it non-d
 - Snapshot renderer: [`scripts/render_snapshot.py`](scripts/render_snapshot.py)
 - Memory schemas: [`references/memory-schemas/`](references/memory-schemas/)
 - Capability files: [`references/capabilities/`](references/capabilities/)
+- Worked examples: [`references/examples/`](references/examples/)
+
+## Capability map
+
+The atomic capability files in [`references/capabilities/`](references/capabilities/), grouped by lifecycle phase:
+
+| Phase | Capabilities |
+|---|---|
+| 1 · Setup | `00` workspace bootstrap · `01` intake gate · `17` template manager |
+| 2 · Evidence & memory | `02` information collection · `03` paper memory · `04` code memory |
+| 3 · Review understanding | `05` review normalizer · `06` situation analyzer |
+| 4 · Strategy | `10` experiment triage · `07` concern atomizer (priority) · `08` strategy planner |
+| 5 · Drafting | `11` response writer · `12` template designer · `13` AC summary writer |
+| 6 · Pre-submission gates | `18` rebuttal rehearsal · `14` safety rule checker |
+| 7 · Discussion rounds | `19` discussion round handler |
+| Cross-cutting | `09` snapshot maker · `16` versioning · `15` Overleaf/LeafLink sync |
+
+Each phase produces structured artifacts — reviewer stance map, atomic concern ledger, strategy matrix, numbered `EXP-*` experiment plan, format-aware draft, coverage map, rehearsal findings, and a reviewer engagement/score tracker — persisted as JSON memory under the workspace's `.awesome-rebuttal/`.
 
 ## Safety policy
 
@@ -142,6 +221,14 @@ If your workspace already has a different structure, the skill will map it non-d
 - bypass anonymity or venue rules;
 - over-promise future revisions;
 - insert LeafLink, local tooling instructions, or any other paper-irrelevant content into final submission-facing text.
+
+## Changelog
+
+### 2026-06-13
+
+- **New — `18` rebuttal rehearsal:** isolated reviewer/AC persona simulation that stress-tests the draft against the paper *before* the safety gate, producing a prioritized hardening list and an anticipated follow-up answer bank. Ships with paste-ready persona prompts (reconstructed reviewer, independent reviewer, AC) and a portable subagent/in-context execution model.
+- **New — `19` discussion round handler:** multi-round follow-up handling with a reviewer engagement/score tracker, delta-only follow-up drafting (reusing the rehearsal answer bank), new-concern routing back to analysis, and discussion-etiquette safety gates.
+- **Workflow:** extended from one-shot drafting to a full lifecycle (setup → … → multi-round discussion period).
 
 ## License
 

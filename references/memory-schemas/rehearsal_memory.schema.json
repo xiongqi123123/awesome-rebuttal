@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Awesome Rebuttal Rehearsal Memory",
+  "type": "object",
+  "required": [
+    "version",
+    "status",
+    "execution_mode",
+    "personas",
+    "findings"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "complete",
+        "partial",
+        "blocked"
+      ]
+    },
+    "execution_mode": {
+      "enum": [
+        "isolated_subagents",
+        "in_context_roleplay"
+      ],
+      "description": "How persona evaluations were run. Isolated subagents are preferred; in_context_roleplay is the portable fallback."
+    },
+    "paper_grounding": {
+      "enum": [
+        "verified",
+        "unverified"
+      ],
+      "description": "unverified means paper_memory was missing/incomplete, so persona reactions are low-confidence."
+    },
+    "source_response_memory": {
+      "type": "string"
+    },
+    "personas": {
+      "type": "array",
+      "description": "Persona definitions built from review_memory/review_analysis_memory. See persona model in 18_rebuttal_rehearsal.md.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "persona_id": {
+            "type": "string"
+          },
+          "persona_type": {
+            "enum": [
+              "reconstructed_reviewer",
+              "independent_reviewer",
+              "ac_meta_reviewer"
+            ]
+          },
+          "based_on": {
+            "type": "object"
+          },
+          "source_anchors": {
+            "type": "array"
+          },
+          "known_stance": {
+            "enum": [
+              "low_score",
+              "borderline",
+              "supportive",
+              "unknown"
+            ]
+          },
+          "known_score": {
+            "type": "string"
+          },
+          "known_confidence": {
+            "type": "string"
+          },
+          "concern_focus": {
+            "type": "array"
+          },
+          "materials_allowed": {
+            "type": "array"
+          },
+          "materials_forbidden": {
+            "type": "array",
+            "description": "Must include strategy_memory, other personas, and the hardening list. Enforces the isolation contract."
+          }
+        }
+      }
+    },
+    "persona_outputs": {
+      "type": "array",
+      "description": "Raw structured JSON returned by each persona prompt (Template A/B/C)."
+    },
+    "findings": {
+      "type": "array",
+      "description": "Aggregated, orchestrator-verified findings.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "finding_id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "unresolved_concern",
+              "residual_doubt",
+              "unsupported_claim",
+              "self_contradiction",
+              "dodged_question",
+              "likely_followup",
+              "score_risk"
+            ]
+          },
+          "raised_by": {
+            "type": "array"
+          },
+          "linked_response_unit_ids": {
+            "type": "array"
+          },
+          "linked_concern_ids": {
+            "type": "array"
+          },
+          "severity": {
+            "enum": [
+              "decision_critical",
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "orchestrator_check": {
+            "enum": [
+              "confirmed",
+              "persona_misread",
+              "needs_user_input"
+            ]
+          },
+          "evidence_anchor": {
+            "type": "string"
+          },
+          "recommended_fix": {
+            "type": "string"
+          },
+          "fix_owner": {
+            "enum": [
+              "11_response_writer",
+              "13_ac_summary_writer",
+              "user",
+              "not_fixable_now"
+            ]
+          },
+          "feeds_discussion_round": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "predicted_score_movement_summary": {
+      "type": "object",
+      "description": "Simulated predictions only. Never written back to review_memory as real scores."
+    },
+    "hardening_list": {
+      "type": "array"
+    },
+    "anticipated_followups": {
+      "type": "array",
+      "description": "Pre-drafted answers for likely discussion-round follow-ups; consumed by 19_discussion_round_handler.md, not injected into the first-round draft."
+    },
+    "coverage_of_findings": {
+      "type": "object"
+    },
+    "routes": {
+      "type": "array"
+    },
+    "open_questions": {
+      "type": "array"
+    }
+  }
+}

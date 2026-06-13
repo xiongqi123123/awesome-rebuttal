@@ -381,6 +381,7 @@ Recommended draft-lock questionnaire:
 10. **Route next**
    - Route to `12_template_designer.md` for PDF/template layout if needed.
    - Route to `13_ac_summary_writer.md` if AC summary is allowed and useful.
+   - Route to `18_rebuttal_rehearsal.md` once a draft exists to stress-test it against simulated reviewer/AC personas and harden weak responses.
    - Route to `14_safety_rule_checker.md` before final/paste-ready text.
 
 ## Stop / proceed rules

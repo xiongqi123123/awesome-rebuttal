@@ -91,8 +91,10 @@ Follow this order unless the user asks for a narrower capability:
 10. **Strategy planning** — read `08_strategy_planner.md`; combine priority analysis, experiment memory, paper/code evidence, venue constraints, and user decisions. Use a questionnaire for strategy/experiment trade-offs before locking the plan.
 11. **Snapshots/versioning** — read `09_snapshot_maker.md` and `16_rebuttal_versioning.md` at each durable checkpoint.
 12. **Writing** — read `11_response_writer.md`, `13_ac_summary_writer.md`, and `12_template_designer.md` only after strategy is evidence-backed and user-approved; 12 selects `pdf_one_page`, `openreview_per_reviewer`, `global_comment`, `hybrid`, or `openreview_markdown_latex` layout.
-13. **Safety gate** — read `14_safety_rule_checker.md` before any final or paste-ready text/PDF/comment.
-14. **Overleaf sync** — read `15_overleaf_leaflink_sync.md` only when the paper is on Overleaf/cn.overleaf or the user asks about cloud/local synchronization.
+13. **Rehearsal** — read `18_rebuttal_rehearsal.md` once a draft exists; simulate reviewer/AC personas reading paper-vs-rebuttal in isolation, then route hardening back to 11/13. Advisory only; it never approves submission.
+14. **Safety gate** — read `14_safety_rule_checker.md` before any final or paste-ready text/PDF/comment.
+15. **Discussion rounds** — read `19_discussion_round_handler.md` after the first rebuttal is submitted; ingest reviewer/AC follow-up replies, track score/engagement per round, draft delta-only follow-ups (reusing the 18 answer bank), and route each through 14 before posting.
+16. **Overleaf sync** — read `15_overleaf_leaflink_sync.md` only when the paper is on Overleaf/cn.overleaf or the user asks about cloud/local synchronization.
 
 Read only the capability files needed for the current request.
 
@@ -109,6 +111,8 @@ A complete strategy-first run should produce:
 - Numbered review-driven experiment memory and triage (`EXP-*`)
 - Format-aware response blueprint and evidence-aligned response draft
 - Coverage map from reviewer concerns to response units
+- Rehearsal findings from simulated reviewer/AC personas, with a prioritized hardening list and an anticipated follow-up answer bank
+- Multi-round discussion state: reviewer engagement/score tracker, per-thread decisions, and delta-only follow-up drafts gated by safety
 - Optional AC summary decision, fact ledger, and draft when rules allow
 - Rule/safety checklist and `safety_memory.json` final gate
 - Rebuttal template report and active template copy when template-based response is needed
@@ -121,7 +125,7 @@ For each actual rebuttal workspace, create or use:
 
 ```text
 .awesome-rebuttal/
-├── memory/      # project/paper/code/review/experiment/strategy/response/template/safety/versioning memory
+├── memory/      # project/paper/code/review/experiment/strategy/response/template/rehearsal/discussion/safety/versioning memory
 ├── drafts/      # response blueprints, drafts, and coverage maps
 ├── snapshots/   # JSON and markdown reload snapshots
 ├── templates/   # active rebuttal templates copied/adapted for this project
